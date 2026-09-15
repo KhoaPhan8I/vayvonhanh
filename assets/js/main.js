@@ -123,7 +123,18 @@
       // eslint-disable-next-line no-console
       console.log("[LEAD_JSONL] " + JSON.stringify(lead));
 
-      if (box) box.style.display = "block";
+      if (box) {
+        box.style.display = "block";
+        if (!box.querySelector("[data-zalo-link]")) {
+          var zalo = document.createElement("a");
+          zalo.setAttribute("data-zalo-link", "true");
+          zalo.href = "https://zalo.me/0369441399";
+          zalo.target = "_blank";
+          zalo.rel = "noopener";
+          zalo.textContent = " Cần gấp? Chat Zalo 5 phút.";
+          box.appendChild(zalo);
+        }
+      }
       form.querySelectorAll('input[type="text"],input[type="tel"],textarea').forEach(function (i) {
         if (i.name !== "website_url") i.value = "";
       });
