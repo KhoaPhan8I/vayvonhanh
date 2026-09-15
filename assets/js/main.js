@@ -97,7 +97,9 @@
         thoi_gian: new Date().toISOString()
       };
 
-      var box = form.querySelector(".form-ok");
+      /* .form-ok sits OUTSIDE <form> (sibling) — query the card, not the form. */
+      var box = form.parentElement
+        ? form.parentElement.querySelector(".form-ok") : null;
       if (!ok) {
         if (box) box.style.display = "none";
         return;
