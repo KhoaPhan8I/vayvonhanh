@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://khoaphan8i.github.io/vayvonhanh/sitemap.xml
