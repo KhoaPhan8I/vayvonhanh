@@ -50,8 +50,12 @@
      leads are queued in localStorage ("lead_queue") and shown as a JSON
      line the operator copies into website/leads.jsonl (or POSTs to a
      backend endpoint when LEAD_ENDPOINT is configured). */
+  /* Realtime lead delivery: free FormSubmit AJAX endpoint forwards each
+     valid lead to owner inbox instantly (first submit needs one-click
+     activation email). localStorage queue + [LEAD_JSONL] console remain
+     as offline fallback. */
   var VN_PHONE_RE = /^(0)(3[2-9]|5[2689]|7[06-9]|8[1-9]|9[0-9])[0-9]{7}$/;
-  var LEAD_ENDPOINT = ""; /* e.g. "https://example.com/api/leads" */
+  var LEAD_ENDPOINT = "https://formsubmit.co/ajax/khoaphanofficial@gmail.com";
 
   function normalizePhone(v) {
     return (v || "").replace(/[\s.]/g, "").replace(/^\+84/, "0");
