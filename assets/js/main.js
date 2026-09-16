@@ -91,12 +91,15 @@
         so_dien_thoai: phone,
         nhu_cau: needEl ? needEl.value : "",
         nguon_trang: location.pathname,
-        /* UTM attribution: bio link carries ?utm_campaign=<video_uid> so each
-           lead maps back to the exact TikTok video that drove it. */
+        /* UTM attribution: caption/bio link carries ?utm_campaign=<video_uid>
+           so each lead maps back to the exact TikTok video that drove it.
+           Fallback: caption URLs are copy-pasted by hand (query lost), so
+           default to TikTok-capture source instead of empty string. */
         utm_campaign: (function () {
           try {
-            return new URLSearchParams(location.search).get("utm_campaign") || "";
-          } catch (e) { return ""; }
+            return new URLSearchParams(location.search).get("utm_campaign")
+              || (document.referrer.indexOf("tiktok") >= 0 ? "tiktok-referral" : "direct-typein");
+          } catch (e) { return "direct-typein"; }
         })(),
         thoi_gian: new Date().toISOString()
       };
