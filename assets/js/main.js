@@ -129,6 +129,15 @@
       // eslint-disable-next-line no-console
       console.log("[LEAD_JSONL] " + JSON.stringify(lead));
 
+      /* Clipboard fallback: lead copied even if backend endpoint is down
+         (e.g. FormSubmit 403 before owner activation) — operator pastes
+         into Zalo, zero lead loss. */
+      try {
+        var summary = "LEAD " + lead.ho_ten + " | " + lead.so_dien_thoai
+          + " | " + lead.nhu_cau + " | " + lead.nguon_trang;
+        if (navigator.clipboard) navigator.clipboard.writeText(summary).catch(function () {});
+      } catch (e) { /* clipboard unavailable: success box still shows */ }
+
       if (box) {
         box.style.display = "block";
         if (!box.querySelector("[data-zalo-link]")) {
