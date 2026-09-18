@@ -137,13 +137,20 @@
          into Zalo, zero lead loss. */
       try {
         var summary = "LEAD " + lead.ho_ten + " | " + lead.so_dien_thoai
-          + " | " + lead.nhu_cau + " | " + lead.nguon_trang;
+          + " | " + lead.nhu_cau + " | " + lead.nguon_trang
+          + " | " + lead.utm_campaign + " | " + lead.thoi_gian;
         if (navigator.clipboard) navigator.clipboard.writeText(summary).catch(function () {});
       } catch (e) { /* clipboard unavailable: success box still shows */ }
 
       if (box) {
         box.style.display = "block";
         if (!box.querySelector("[data-zalo-link]")) {
+          /* R3-close-the-loop: clipboard already holds lead + utm_campaign —
+             tell the user to paste it so the manual Zalo path keeps
+             video attribution (backend FormSubmit still pending activation). */
+          var hint = document.createElement("p");
+          hint.textContent = "Thông tin của bác đã copy sẵn — mở Zalo và DÁN vào khung chat để em tư vấn ngay nhé!";
+          box.appendChild(hint);
           var zalo = document.createElement("a");
           zalo.setAttribute("data-zalo-link", "true");
           zalo.href = "https://zalo.me/0369441399";

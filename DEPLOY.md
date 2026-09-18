@@ -1,5 +1,15 @@
 # Deploy website/ lên Cloudflare Pages (free, không cần mua domain).
 
+## LIVE (2026-09-15, agent tự deploy via GitHub Pages — không cần OAuth)
+- URL bio: https://khoaphan8i.github.io/vayvonhanh/
+- Repo: https://github.com/KhoaPhan8I/vayvonhanh (public, push website/ là tự redeploy)
+- Verify 2026-09-15: HTTP 200, title đúng, form VN-phone OK, utm_campaign capture OK
+- Bio link TikTok → URL trên. Mỗi video dùng link kèm campaign riêng khi share/comment:
+  https://khoaphan8i.github.io/vayvonhanh/?utm_source=tiktok&utm_medium=video&utm_campaign=<video_uid>
+  (video_uid có sẵn trong outputs sidecar JSON — xem pipeline.py meta['utm'].)
+- Khi nào mua domain vayvonhanh.vn: trỏ CNAME về khoaphan8i.github.io (hoặc về
+  Cloudflare Pages nếu migrate theo hướng dẫn cũ bên dưới).
+
 ## Chuẩn bị (agent đã làm sẵn — chạy smoke test trước khi deploy)
 ```
 python scripts/verify_website.py
